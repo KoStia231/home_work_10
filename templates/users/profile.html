@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Поля профиля пользователя -->
+                <h2>Профиль</h2>
+                <p><strong>Имя:</strong> {{ user.first_name }}</p>
+                <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+                {% if user == request.user %}
+                    <p><strong>Номер телефона:</strong> {{ user.phone_number }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile_update' user.pk %}">
+                        Редактировать профиль
+                    </a>
+                {% else %}
+                    <p><strong>Номер телефона:</strong> Доступно только владельцу профиля</p>
+                    <p><strong>Email:</strong> Доступно только владельцу профиля</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

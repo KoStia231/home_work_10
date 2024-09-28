@@ -1,0 +1,23 @@
+
+<figure>
+    <blockquote class="blockquote">
+        <p>Work</p>
+    </blockquote>
+    {% if request.user.is_authenticated %}
+        <figcaption class="blockquote-footer">
+            Активная учетная запись: <cite title="Source Title">{{ request.user.first_name }}</cite>
+        </figcaption>
+    {% endif %}
+</figure>
+<nav class="ms-5">
+    <a class="p-2 btn btn-outline-primary" href="#">Главная</a>
+
+    {% if request.user.is_authenticated %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile' request.user.pk %}">Профиль</a>
+        <a class="p-2 btn btn-outline-danger" href="{% url 'users:logout' %}">Выйти</a>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Вход</a>
+    {% endif %}
+
+</nav>

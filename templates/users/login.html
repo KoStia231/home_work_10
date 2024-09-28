@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="col-3 m-auto">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary">Войти</button>
+        </form>
+        <div class="mt-4">
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:reset_password' %}">Забыли пароль?</a>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

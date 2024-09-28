@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+        <div class="col-4 m-auto">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-outline-primary">Сохранить</button>
+            </form>
+        </div>
+
+{% endblock %}
