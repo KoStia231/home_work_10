@@ -7,13 +7,17 @@ from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserLoginForm
 from users.forms import UserRegisterForm, UserProfileUpdateForm, UserProfileUpdateFormManager
 from users.models import User
 
+
+class Index(TemplateView):
+    """Отображение главной страницы сайта"""
+    template_name = 'index.html'
 
 class MyLoginRequiredMixin(LoginRequiredMixin):
     """Миксин для всех страниц, которые требуют авторизации"""
@@ -43,7 +47,7 @@ class UserRegisterView(CreateView):
         user.token = token
         user.save()
         host = self.request.get_host()  # это получение хоста
-        url = f'http://{host}/users/verify/{token}'
+        url = f'http://{host}/verify/{token}'
         send_mail(
             subject=f'Подтверждение регистрации',
             message=f'Для подтверждения регистрации перейдите по ссылке: {url}',

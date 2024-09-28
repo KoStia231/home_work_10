@@ -7,13 +7,14 @@ from django.views.decorators.cache import cache_page
 from users.apps import UsersConfig
 from users.views import (
     UserLoginView, UserRegisterView, UserProfileUpdateView,
-    UserProfileView, verify_mail, reset_password
+    UserProfileView, verify_mail, reset_password, Index
 )
 
 app_name = UsersConfig.name
 
 urlpatterns = [
-                  path('', UserLoginView.as_view(), name='login'),
+                  path('', Index.as_view(), name='index'),
+                  path('login/', UserLoginView.as_view(), name='login'),
                   path('logout/', LogoutView.as_view(), name='logout'),
                   path('register/', UserRegisterView.as_view(), name='register'),
 
