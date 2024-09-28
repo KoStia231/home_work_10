@@ -49,5 +49,7 @@ python3 manage.py runserver
 
 # API 
 > http://localhost:8000/api/lessons   ***Список уроков***
+> 
 > http://localhost:8000/api/lessons/<int:pk>  ***Конкретный урок***
+> 
 > http://localhost:8000/api/courses/  ***Курсы***
