@@ -7,17 +7,13 @@ from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
+from django.views.generic import CreateView, UpdateView, DetailView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserLoginForm
 from users.forms import UserRegisterForm, UserProfileUpdateForm, UserProfileUpdateFormManager
 from users.models import User
 
-
-class Index(TemplateView):
-    """Отображение главной страницы сайта"""
-    template_name = 'index.html'
 
 class MyLoginRequiredMixin(LoginRequiredMixin):
     """Миксин для всех страниц, которые требуют авторизации"""
@@ -30,6 +26,14 @@ class UserLoginView(LoginView):
     template_name = 'users/login.html'
     form_class = UserLoginForm
     redirect_authenticated_user = True  # авторизовать пользователя при успешном входе
+
+
+def index(request):
+    """Страничка главной страницы"""
+    if request.user.is_authenticated:  # переход в профиль если авторизован
+        return redirect(reverse('users:profile', kwargs={'pk': request.user.pk}))
+    else:  # на регистрацию если не авторизован
+        return redirect('users:login')
 
 
 class UserRegisterView(CreateView):
@@ -93,7 +97,6 @@ def reset_password(request):
 class UserProfileUpdateView(MyLoginRequiredMixin, UpdateView):
     """Страничка редактирования профиля пользователя"""
     model = User
-    form_class = UserProfileUpdateForm
     success_url = reverse_lazy('users:profile')
 
     def get_success_url(self):
@@ -117,7 +120,7 @@ class UserProfileUpdateView(MyLoginRequiredMixin, UpdateView):
             return UserProfileUpdateFormManager
 
 
-class UserProfileView(DetailView):
+class UserProfileView(MyLoginRequiredMixin, DetailView):
     """Страничка просмотра профиля пользователя"""
     model = User
     template_name = 'users/profile.html'
@@ -126,4 +129,5 @@ class UserProfileView(DetailView):
         """контекст"""
         context = super().get_context_data(**kwargs)
         user = self.request.user
+        context['user_'] = user
         return context

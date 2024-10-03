@@ -1,1 +1,880 @@
-[{"model": "admin.logentry", "pk": 1, "fields": {"action_time": "2024-09-28T12:22:49.362Z", "user": 1, "content_type": 7, "object_id": "1", "object_repr": "Course object (1)", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 2, "fields": {"action_time": "2024-09-28T12:24:56.629Z", "user": 1, "content_type": 8, "object_id": "1", "object_repr": "nbsdiunbsiup", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "auth.permission", "pk": 1, "fields": {"name": "Can add log entry", "content_type": 1, "codename": "add_logentry"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change log entry", "content_type": 1, "codename": "change_logentry"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete log entry", "content_type": 1, "codename": "delete_logentry"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view log entry", "content_type": 1, "codename": "view_logentry"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add permission", "content_type": 2, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change permission", "content_type": 2, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete permission", "content_type": 2, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view permission", "content_type": 2, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add group", "content_type": 3, "codename": "add_group"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change group", "content_type": 3, "codename": "change_group"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete group", "content_type": 3, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view group", "content_type": 3, "codename": "view_group"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add content type", "content_type": 4, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change content type", "content_type": 4, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete content type", "content_type": 4, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view content type", "content_type": 4, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add session", "content_type": 5, "codename": "add_session"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change session", "content_type": 5, "codename": "change_session"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete session", "content_type": 5, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view session", "content_type": 5, "codename": "view_session"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add пользователь", "content_type": 6, "codename": "add_user"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change пользователь", "content_type": 6, "codename": "change_user"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete пользователь", "content_type": 6, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view пользователь", "content_type": 6, "codename": "view_user"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add course", "content_type": 7, "codename": "add_course"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change course", "content_type": 7, "codename": "change_course"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete course", "content_type": 7, "codename": "delete_course"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view course", "content_type": 7, "codename": "view_course"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add lesson", "content_type": 8, "codename": "add_lesson"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change lesson", "content_type": 8, "codename": "change_lesson"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete lesson", "content_type": 8, "codename": "delete_lesson"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view lesson", "content_type": 8, "codename": "view_lesson"}}, {"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "admin", "model": "logentry"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "users", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "lms", "model": "course"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "lms", "model": "lesson"}}, {"model": "sessions.session", "pk": "utj5eulu5xbpmpg8d4ihdhslgd4lesx0", "fields": {"session_data": ".eJxVjEEOwiAQRe_C2hAZSgdcuvcMhGFAqgaS0q6Md7dNutDtf-_9t_BhXYpfe5r9xOIilDj9bhTiM9Ud8CPUe5Ox1WWeSO6KPGiXt8bpdT3cv4MSetlqDdEwAgwuJ2LiaBUbtODOmjKYYHI0I1pngTFFQAhqHEhtUGkEbcXnC-SXN3o:1suWOF:H7e4B92Mu0QZCc4MbhEOLEVICsZ5BOPw-CQ8Svwjp7o", "expire_date": "2024-10-12T12:17:35.134Z"}}, {"model": "users.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$600000$yoMF5drRFYOLYjHZUe2Oiq$QiixRpE2Cy5fmj4GWGtlgHms2RnKD/VZTpRwc3cKW+c=", "last_login": "2024-09-28T12:17:35.132Z", "is_superuser": true, "last_name": "admin", "is_staff": true, "is_active": true, "date_joined": "2024-09-28T12:02:12.566Z", "first_name": "admin", "email": "admin@example.com", "phone_number": null, "avatar": "", "country": null, "new_password": null, "token": null, "groups": [], "user_permissions": []}}, {"model": "users.user", "pk": 2, "fields": {"password": "pbkdf2_sha256$600000$aNIe0tKAQaiMKWKFiuvo6n$mnzEm2gT5bXRKHF3kMGdyjHCz2vPqMX6zbsTj2t7lec=", "last_login": "2024-09-28T12:16:53.071Z", "is_superuser": false, "last_name": "", "is_staff": false, "is_active": true, "date_joined": "2024-09-28T12:15:11.394Z", "first_name": "kos", "email": "kosta123139@gmail.com", "phone_number": null, "avatar": "", "country": null, "new_password": null, "token": "66ed2303c99a705ac358babc8ccb04b4", "groups": [], "user_permissions": []}}, {"model": "lms.course", "pk": 1, "fields": {"title": "jvhdilu", "description": "vdrbnviulbid", "avatar": "course/_DSC0701.jpg"}}, {"model": "lms.lesson", "pk": 1, "fields": {"title": "nbsdiunbsiup", "description": "bsneo[bos[ebv", "course": 1, "avatar": "lesson/_DSC0698.jpg", "video_link": "https://youtu.be/nidQCt_HEsY?si=-rZNzeC7CJfjrPwJ"}}]
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2024-09-28T12:22:49.362Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "Course object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2024-09-28T12:24:56.629Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "nbsdiunbsiup",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2024-10-03T15:59:05.905Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "22",
+      "object_repr": "test",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2024-10-03T15:59:30.224Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "22",
+      "object_repr": "test",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add пользователь",
+      "content_type": 6,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change пользователь",
+      "content_type": 6,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete пользователь",
+      "content_type": 6,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view пользователь",
+      "content_type": 6,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add course",
+      "content_type": 7,
+      "codename": "add_course"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change course",
+      "content_type": 7,
+      "codename": "change_course"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete course",
+      "content_type": 7,
+      "codename": "delete_course"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view course",
+      "content_type": 7,
+      "codename": "view_course"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add lesson",
+      "content_type": 8,
+      "codename": "add_lesson"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change lesson",
+      "content_type": 8,
+      "codename": "change_lesson"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete lesson",
+      "content_type": 8,
+      "codename": "delete_lesson"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view lesson",
+      "content_type": 8,
+      "codename": "view_lesson"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Может блокировать пользователей сервиса",
+      "content_type": 6,
+      "codename": "manager"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can add pay ment",
+      "content_type": 9,
+      "codename": "add_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can change pay ment",
+      "content_type": 9,
+      "codename": "change_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can delete pay ment",
+      "content_type": 9,
+      "codename": "delete_payment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can view pay ment",
+      "content_type": 9,
+      "codename": "view_payment"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "users",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "lms",
+      "model": "course"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "lms",
+      "model": "lesson"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "users",
+      "model": "payment"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "9jjsr47juntcb0um4mn7l3lxdeancujz",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hAZSgdcuvcMhGFAqgaS0q6Md7dNutDtf-_9t_BhXYpfe5r9xOIilDj9bhTiM9Ud8CPUe5Ox1WWeSO6KPGiXt8bpdT3cv4MSetlqDdEwAgwuJ2LiaBUbtODOmjKYYHI0I1pngTFFQAhqHEhtUGkEbcXnC-SXN3o:1swODd:oVP_Cgl0r1WZBeuEsqbNckvzWzAoaYyR3XyYQmsq7Po",
+      "expire_date": "2024-10-17T15:58:21.980Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dv5mtka4xuo5nuwpe84q3cx97i5du6l9",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hAZSgdcuvcMhGFAqgaS0q6Md7dNutDtf-_9t_BhXYpfe5r9xOIilDj9bhTiM9Ud8CPUe5Ox1WWeSO6KPGiXt8bpdT3cv4MSetlqDdEwAgwuJ2LiaBUbtODOmjKYYHI0I1pngTFFQAhqHEhtUGkEbcXnC-SXN3o:1swLlx:1znkmIum5YZ2cWsULgcv79XpwOSfFczv1gINbfZiS34",
+      "expire_date": "2024-10-17T13:21:37.488Z"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$yoMF5drRFYOLYjHZUe2Oiq$QiixRpE2Cy5fmj4GWGtlgHms2RnKD/VZTpRwc3cKW+c=",
+      "last_login": "2024-10-03T15:58:21.978Z",
+      "is_superuser": true,
+      "last_name": "admin",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-28T12:02:12.566Z",
+      "first_name": "admin",
+      "email": "admin@example.com",
+      "phone_number": null,
+      "avatar": "",
+      "country": null,
+      "new_password": null,
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$aNIe0tKAQaiMKWKFiuvo6n$mnzEm2gT5bXRKHF3kMGdyjHCz2vPqMX6zbsTj2t7lec=",
+      "last_login": "2024-10-03T13:24:18.458Z",
+      "is_superuser": false,
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-28T12:15:11.394Z",
+      "first_name": "kos",
+      "email": "kosta123139@gmail.com",
+      "phone_number": null,
+      "avatar": "",
+      "country": null,
+      "new_password": null,
+      "token": "66ed2303c99a705ac358babc8ccb04b4",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "data_payment": "2024-10-03",
+      "method_payment": "C",
+      "sum_payment": "500.00",
+      "status_payment": "P",
+      "course": [
+        2
+      ],
+      "lesson": []
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "data_payment": "2024-10-03",
+      "method_payment": "B",
+      "sum_payment": "300.00",
+      "status_payment": "P",
+      "course": [],
+      "lesson": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "users.payment",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "data_payment": "2024-10-03",
+      "method_payment": "C",
+      "sum_payment": "750.00",
+      "status_payment": "P",
+      "course": [
+        4
+      ],
+      "lesson": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 1,
+    "fields": {
+      "title": "jvhdilu",
+      "description": "vdrbnviulbid",
+      "avatar": "course/_DSC0701.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 2,
+    "fields": {
+      "title": "Organized asynchronous protocol",
+      "description": "Term president inside hotel necessary. Population political order give law six feel.",
+      "avatar": "course/baby.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 3,
+    "fields": {
+      "title": "Balanced responsive knowledgebase",
+      "description": "Low middle provide animal. Age us city. Be response fill.",
+      "avatar": "course/television.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 4,
+    "fields": {
+      "title": "Programmable real-time task-force",
+      "description": "Dinner out their law behavior second. Environmental management want that democratic must.",
+      "avatar": "course/represent.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 5,
+    "fields": {
+      "title": "Polarized background hardware",
+      "description": "Bad give citizen against. Certain fund body reason. Just value Congress dark every for for son.",
+      "avatar": "course/myself.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 6,
+    "fields": {
+      "title": "Sharable 24hour emulation",
+      "description": "Commercial have keep organization way matter. Piece international offer language into quite hospital real. Catch cell stage itself father important card.",
+      "avatar": "course/open.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 7,
+    "fields": {
+      "title": "Networked intermediate moratorium",
+      "description": "Result year listen product live book south. Degree prepare board care it.",
+      "avatar": "course/fast.jpg"
+    }
+  },
+  {
+    "model": "lms.course",
+    "pk": 8,
+    "fields": {
+      "title": "Vision-oriented holistic focus group",
+      "description": "Picture I pay less force. People southern interesting church race lot. Church response manage blue upon institution customer.",
+      "avatar": "course/air.jpg"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 1,
+    "fields": {
+      "title": "nbsdiunbsiup",
+      "description": "bsneo[bos[ebv",
+      "course": 1,
+      "avatar": "lesson/_DSC0698.jpg",
+      "video_link": "https://youtu.be/nidQCt_HEsY?si=-rZNzeC7CJfjrPwJ"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "Audience why final wonder.",
+      "description": "Night generation debate industry.",
+      "course": 4,
+      "avatar": "lesson/somebody.jpg",
+      "video_link": "http://www.hernandez.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 3,
+    "fields": {
+      "title": "Author sing prevent appear poor let then.",
+      "description": "Find partner value bit power project security.",
+      "course": 4,
+      "avatar": "lesson/figure.jpg",
+      "video_link": "http://morse-rogers.net/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 4,
+    "fields": {
+      "title": "Product kind white.",
+      "description": "Almost visit above energy.",
+      "course": 4,
+      "avatar": "lesson/once.jpg",
+      "video_link": "https://www.carter.info/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 5,
+    "fields": {
+      "title": "Together matter PM pretty.",
+      "description": "Similar green also consumer reason grow. Town practice professional receive.",
+      "course": 4,
+      "avatar": "lesson/his.jpg",
+      "video_link": "https://munoz.org/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 6,
+    "fields": {
+      "title": "Between during may she page product.",
+      "description": "Good Mr somebody film throughout.",
+      "course": 5,
+      "avatar": "lesson/half.jpg",
+      "video_link": "https://www.leonard.biz/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 7,
+    "fields": {
+      "title": "Arrive very wife go environmental drop.",
+      "description": "Federal room Congress sometimes painting. Section simple strong third wide.",
+      "course": 5,
+      "avatar": "lesson/president.jpg",
+      "video_link": "https://www.middleton-wolf.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 8,
+    "fields": {
+      "title": "Writer laugh likely poor.",
+      "description": "Sport just strategy gas would.",
+      "course": 5,
+      "avatar": "lesson/officer.jpg",
+      "video_link": "https://www.matthews.info/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 9,
+    "fields": {
+      "title": "Or citizen product while station.",
+      "description": "Participant animal set how.",
+      "course": 5,
+      "avatar": "lesson/seem.jpg",
+      "video_link": "https://www.martinez.info/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 10,
+    "fields": {
+      "title": "Language lose shake.",
+      "description": "Party attack weight to.",
+      "course": 6,
+      "avatar": "lesson/issue.jpg",
+      "video_link": "http://www.edwards-hall.biz/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 11,
+    "fields": {
+      "title": "Modern between executive.",
+      "description": "Buy task evening card. Rock but decide per go.",
+      "course": 6,
+      "avatar": "lesson/page.jpg",
+      "video_link": "http://navarro-stephens.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 12,
+    "fields": {
+      "title": "Office international remain front next once.",
+      "description": "However nation grow similar account face sign. Approach near choose attention miss.",
+      "course": 6,
+      "avatar": "lesson/me.jpg",
+      "video_link": "https://www.hernandez-perez.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 13,
+    "fields": {
+      "title": "Smile such member.",
+      "description": "Ground skin return manage us information arm a. Land thought recent case information level.",
+      "course": 6,
+      "avatar": "lesson/view.jpg",
+      "video_link": "https://www.palmer.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 14,
+    "fields": {
+      "title": "Result interview until trial.",
+      "description": "Responsibility catch actually sing over no professor spend.",
+      "course": 7,
+      "avatar": "lesson/show.jpg",
+      "video_link": "http://sanders.biz/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 15,
+    "fields": {
+      "title": "Child both safe black pattern.",
+      "description": "Property with side choose provide. Able model them entire that.",
+      "course": 7,
+      "avatar": "lesson/picture.jpg",
+      "video_link": "https://www.jenkins.biz/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 16,
+    "fields": {
+      "title": "Citizen father quickly how.",
+      "description": "Western dog truth officer when. Health guess industry with.",
+      "course": 7,
+      "avatar": "lesson/natural.jpg",
+      "video_link": "http://ortiz-anderson.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 17,
+    "fields": {
+      "title": "Because front figure lot now its.",
+      "description": "Though camera simple blood believe free lawyer.",
+      "course": 7,
+      "avatar": "lesson/seat.jpg",
+      "video_link": "https://www.steele.com/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 18,
+    "fields": {
+      "title": "Book young back consider official.",
+      "description": "Fight between cause far then throughout kitchen.",
+      "course": 8,
+      "avatar": "lesson/toward.jpg",
+      "video_link": "https://www.jones-alexander.org/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 19,
+    "fields": {
+      "title": "College either option.",
+      "description": "Conference game actually region. Exactly night base film.",
+      "course": 8,
+      "avatar": "lesson/whole.jpg",
+      "video_link": "https://www.peters-white.info/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 20,
+    "fields": {
+      "title": "Stage just society weight student.",
+      "description": "List team family computer form paper.",
+      "course": 8,
+      "avatar": "lesson/such.jpg",
+      "video_link": "https://www.williams.info/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 21,
+    "fields": {
+      "title": "Training own sound consumer by explain.",
+      "description": "Build economic decide meet however. Husband mother long present animal from help.",
+      "course": 8,
+      "avatar": "lesson/each.jpg",
+      "video_link": "http://edwards.org/"
+    }
+  },
+  {
+    "model": "lms.lesson",
+    "pk": 23,
+    "fields": {
+      "title": "test",
+      "description": "test test",
+      "course": 1,
+      "avatar": "",
+      "video_link": "https://youtu.be/nidQCt_HEsY?si=-rZNzeC7CJfjrPwJ"
+    }
+  }
+]

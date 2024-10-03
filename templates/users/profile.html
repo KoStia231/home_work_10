@@ -10,6 +10,7 @@
                 {% if user == request.user %}
                     <p><strong>Номер телефона:</strong> {{ user.phone_number }}</p>
                     <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>TEST_VALUE:</strong> {{ user_ }}</p>
                     <a class="p-2 btn btn-outline-primary" href="{% url 'users:profile_update' user.pk %}">
                         Редактировать профиль
                     </a>
