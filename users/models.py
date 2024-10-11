@@ -16,7 +16,7 @@ class User(AbstractUser):
     country = models.CharField(verbose_name='страна', max_length=100, **NULLABLE)
 
     new_password = models.CharField(verbose_name='Новый пароль', max_length=100, **NULLABLE)
-    token = models.CharField(max_length=255, **NULLABLE, verbose_name='Токен')
+    token_auf = models.CharField(max_length=255, **NULLABLE, verbose_name='Токен')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -27,6 +27,9 @@ class User(AbstractUser):
         permissions = [
             ('manager', 'Может блокировать пользователей сервиса'),
         ]
+
+    def __str__(self):
+        return f'{self.first_name},{self.email}, {self.phone_number} '
 
 
 class PayMent(models.Model):

@@ -2,13 +2,7 @@ from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from lms.models import Lesson, Course
-from users.models import PayMent
 
-
-class PayMentSerializer(ModelSerializer):
-    class Meta:
-        model = PayMent
-        fields = '__all__'
 
 class LessonSerializer(ModelSerializer):
     class Meta:

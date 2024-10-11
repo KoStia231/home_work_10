@@ -47,11 +47,11 @@ class UserRegisterView(CreateView):
         """Отправка пользователю письма с подтверждением регистрации"""
         user = form.save()
         user.is_active = False
-        token = secrets.token_hex(16)  # генерит токен
-        user.token = token
+        token_auf = secrets.token_hex(16)  # генерит токен
+        user.token_auf = token_auf
         user.save()
         host = self.request.get_host()  # это получение хоста
-        url = f'http://{host}/verify/{token}'
+        url = f'http://{host}/verify/{token_auf}'
         send_mail(
             subject=f'Подтверждение регистрации',
             message=f'Для подтверждения регистрации перейдите по ссылке: {url}',
@@ -61,9 +61,9 @@ class UserRegisterView(CreateView):
         return super().form_valid(form)
 
 
-def verify_mail(request, token):
+def verify_mail(request, token_auf):
     """Подтверждение регистрации переход по ссылке из письма и редирект на страницу входа"""
-    user = get_object_or_404(User, token=token)  # получить пользователя по токен
+    user = get_object_or_404(User, token_auf=token_auf)  # получить пользователя по токен
     user.is_active = True
     user.save()
     return redirect(reverse('users:login'))

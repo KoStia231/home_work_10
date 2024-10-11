@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 from users.apps import UsersConfig
 from users.views import (
@@ -21,6 +20,6 @@ urlpatterns = [
                   path('profile-update/<int:pk>', UserProfileUpdateView.as_view(), name='profile_update'),
                   path('profile/<int:pk>', UserProfileView.as_view(), name='profile'),
 
-                  path('verify/<str:token>', verify_mail, name='verify'),
+                  path('verify/<str:token_auf>', verify_mail, name='verify'),
                   path('reset_password/', reset_password, name='reset_password'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
