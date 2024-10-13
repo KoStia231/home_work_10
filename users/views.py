@@ -2,6 +2,7 @@ import random
 import secrets
 import string
 
+from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
@@ -130,4 +131,6 @@ class UserProfileView(MyLoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context['user_'] = user
+        context['token_access'] = AccessToken.for_user(user) if user.is_authenticated else None
+        context['token_refresh'] = RefreshToken.for_user(user) if user.is_authenticated else None
         return context
