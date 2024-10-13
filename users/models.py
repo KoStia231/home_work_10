@@ -26,6 +26,7 @@ class User(AbstractUser):
         verbose_name_plural = 'пользователи'
         permissions = [
             ('manager', 'Может блокировать пользователей сервиса'),
+            ('moderator', 'Может просматривать и редактировать любые уроки и курсы'),
         ]
 
     def __str__(self):
