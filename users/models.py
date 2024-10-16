@@ -30,7 +30,7 @@ class User(AbstractUser):
         ]
 
     def __str__(self):
-        return f'{self.first_name},{self.email}, {self.phone_number} '
+        return f'{self.first_name},{self.email}, {self.phone_number}, {self.get_group_permissions()} '
 
 
 class PayMent(models.Model):

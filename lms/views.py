@@ -1,29 +1,32 @@
 import secrets
 
 from django.core.mail import send_mail
-from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import viewsets, status, generics
+from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from config.settings import EMAIL_HOST_USER
 from lms.models import Lesson, Course
-from lms.permissions import IsOwnerOrModerator
+from lms.permissions import IsOwnerOrModerator, IsOwner
 from lms.serializers import (
     MyTokenObtainPairSerializer, PayMentSerializer,
-    UserCreateSerializer, LessonSerializer,
+    LessonSerializer,
     CourseSerializer, MyTokenRefreshSerializer
 )
-from users.models import PayMent, User
+from lms.serializers import UserSerializer
+from users.models import PayMent
+from users.models import User
 
 
-#  --------- юзеры ---------
-
+# ------------------------------------------------------ юзеры ------------------------------------------------------
 class UserCreateView(generics.CreateAPIView):
     """Создание нового юзера"""
     queryset = User.objects.all()
-    serializer_class = UserCreateSerializer
+    serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
     def perform_create(self, serializer):
@@ -43,6 +46,35 @@ class UserCreateView(generics.CreateAPIView):
         return super().perform_create(serializer)
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для создания, просмотра, редактирования и деактивации пользователя.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsOwner | IsAdminUser]
+
+    def get_queryset(self):
+        """
+        Возвращает список пользователей в зависимости от прав доступа.
+        """
+        if self.request.user.has_perm('users.is_admin'):  # Если пользователь администратор
+            return User.objects.all()  # Возвращаем всех пользователей
+        return User.objects.filter(id=self.request.user.id)  # Возвращаем только текущего пользователя
+
+    def create(self, request, *args, **kwargs):
+        raise MethodNotAllowed('POST', detail='Создание профиля через этот эндпоинт запрещено.')
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Деактивирует пользователя вместо его удаления.
+        """
+        user = self.get_object()
+        user.is_active = False
+        user.save()
+        return Response({'status': 'Профиль удален'}, status=status.HTTP_204_NO_CONTENT)
+
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
     permission_classes = [AllowAny]
@@ -53,7 +85,7 @@ class MyTokenRefreshView(TokenRefreshView):
     permission_classes = [AllowAny]
 
 
-#  --------- оплата ---------
+#  ------------------------------------------------------ оплата ------------------------------------------------------
 class PayMentViewSet(viewsets.ModelViewSet):
     """Для оплаты"""
     queryset = PayMent.objects.all()
@@ -66,7 +98,7 @@ class PayMentViewSet(viewsets.ModelViewSet):
     ordering = ['data_payment']  # по умолчанию
 
 
-#  --------- курсы ---------
+#  ------------------------------------------------------ курсы ------------------------------------------------------
 
 class CourseViewSet(viewsets.ModelViewSet):
     """
@@ -76,18 +108,35 @@ class CourseViewSet(viewsets.ModelViewSet):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsOwnerOrModerator]
 
     def get_queryset(self):
         """
-        Если пользователь не модератор, он видит только свои курсы.
+        Модераторы видят все курсы, а пользователи — только свои.
         """
         if self.request.user.has_perm('users.moderator'):
             return Course.objects.all()
-        return Course.objects.filter(author=self.request.user)
+        return Course.objects.filter(autor=self.request.user)
+
+    def get_permissions(self):
+        """
+        Устанавливаем права в зависимости от действия.
+        Модераторам запрещено создавать и удалять курсы.
+        Владельцы могут редактировать и удалять свои курсы.
+        """
+        if self.action in ['create', 'destroy']:
+            if self.request.user.has_perm('users.moderator'):
+                # Модераторам запрещено удалять и создавать курсы
+                self.permission_classes = [IsAdminUser]  # Только администраторы могут создавать/удалять
+            else:
+                self.permission_classes = [IsOwner]  # Владелец может удалять свои курсы
+        else:
+            # Для всех остальных действий (редактирование, просмотр) применяем стандартные права
+            self.permission_classes = [IsOwnerOrModerator | IsOwner]
+
+        return super().get_permissions()
 
 
-# --------- уроки ---------
+# ------------------------------------------------------ уроки ------------------------------------------------------
 class LessonViewSet(viewsets.ModelViewSet):
     """
     ViewSet для уроков.
@@ -96,13 +145,29 @@ class LessonViewSet(viewsets.ModelViewSet):
     """
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = [IsOwnerOrModerator]
 
     def get_queryset(self):
         """
-        Если пользователь не модератор, он видит только свои уроки.
+        Модераторы видят все уроки, а пользователи — только свои.
         """
         if self.request.user.has_perm('users.moderator'):
             return Lesson.objects.all()
-        return Lesson.objects.filter(author=self.request.user)
+        return Lesson.objects.filter(autor=self.request.user)
 
+    def get_permissions(self):
+        """
+        Устанавливаем права в зависимости от действия.
+        Модераторам запрещено создавать и удалять уроки.
+        Владельцы могут редактировать и удалять свои уроки.
+        """
+        if self.action in ['create', 'destroy']:
+            if self.request.user.has_perm('users.moderator'):
+                # Модераторам запрещено удалять и создавать уроки
+                self.permission_classes = [IsAdminUser]  # Только администраторы могут создавать/удалять
+            else:
+                self.permission_classes = [IsOwner]  # Владелец может удалять свои уроки
+        else:
+            # Для всех остальных действий (редактирование, просмотр) применяем стандартные права
+            self.permission_classes = [IsOwnerOrModerator | IsOwner]
+
+        return super().get_permissions()

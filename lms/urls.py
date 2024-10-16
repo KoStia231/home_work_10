@@ -9,7 +9,7 @@ from lms.views import (
     CourseViewSet, LessonViewSet
 )
 from lms.views import (
-    PayMentViewSet, UserCreateView,
+    PayMentViewSet, UserCreateView, UserViewSet,
     MyTokenObtainPairView, MyTokenRefreshView
 )
 
@@ -19,6 +19,7 @@ router = DefaultRouter()
 router.register(r'payments', PayMentViewSet)  # ----- оплата -----
 router.register(r'lessons', LessonViewSet)  # ----- уроки -----
 router.register(r'courses', CourseViewSet)  # ----- курсы -----
+router.register(r'profile', UserViewSet)  # ----- профиль -----
 
 urlpatterns = [
                   path('', include(router.urls)),
