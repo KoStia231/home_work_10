@@ -8,25 +8,13 @@ from lms.apps import LmsConfig
 from lms.views import (
     CourseViewSet, LessonViewSet
 )
-from lms.views import (
-    PayMentViewSet, UserCreateView, UserViewSet,
-    MyTokenObtainPairView, MyTokenRefreshView
-)
 
 app_name = LmsConfig.name
 
 router = DefaultRouter()
-router.register(r'payments', PayMentViewSet)  # ----- оплата -----
 router.register(r'lessons', LessonViewSet)  # ----- уроки -----
 router.register(r'courses', CourseViewSet)  # ----- курсы -----
-router.register(r'profile', UserViewSet)  # ----- профиль -----
 
 urlpatterns = [
                   path('', include(router.urls)),
-
-                  # ----- юзеры -----
-                  path('register/', UserCreateView.as_view(), name='register_api'),
-                  path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-                  path('token-refresh/', MyTokenRefreshView.as_view(), name='token_refresh'),
-
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

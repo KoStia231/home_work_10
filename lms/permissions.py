@@ -1,23 +1,18 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsOwnerOrModerator(BasePermission):
+class IsModer(BasePermission):
     """
-    Разрешает доступ модераторам ко всем курсам, а пользователям — только к своим.
+    Проверяет, является ли пользователь модератором.
     """
 
-    def has_object_permission(self, request, view, obj):
-        if request.user.has_perm('users.moderator'):
-            # Модератору можно все, кроме удаления и создания
-            if view.action in ['destroy', 'create']:
-                return False
-            return True
+    def has_permission(self, request, view):
+        return request.user.has_perm('users.moderator')
 
 
 class IsOwner(BasePermission):
     """
-    Разрешает доступ только владельцам объектов.
+    Проверяет, является ли пользователь автором объекта.
     """
     def has_object_permission(self, request, view, obj):
-        # Доступ, если текущий пользователь - владелец объекта
-        return obj == request.user or obj.autor == request.user
+        return obj.autor == request.user
