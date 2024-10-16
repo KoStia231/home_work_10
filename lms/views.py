@@ -58,9 +58,9 @@ class UserViewSet(viewsets.ModelViewSet):
         """
         Возвращает список пользователей в зависимости от прав доступа.
         """
-        if self.request.user.has_perm('users.is_admin'):  # Если пользователь администратор
-            return User.objects.all()  # Возвращаем всех пользователей
-        return User.objects.filter(id=self.request.user.id)  # Возвращаем только текущего пользователя
+        if self.request.user.has_perm('users.is_admin'):
+            return User.objects.all()
+        return User.objects.filter(id=self.request.user.id)
 
     def create(self, request, *args, **kwargs):
         raise MethodNotAllowed('POST', detail='Создание профиля через этот эндпоинт запрещено.')
