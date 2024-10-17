@@ -1,7 +1,11 @@
-from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django.shortcuts import get_object_or_404
 
-from lms.models import Lesson, Course
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+
+from lms.models import Lesson, Course, Subscription
 from lms.permissions import IsOwner, IsModer
 from lms.serializers import (
     LessonSerializer, CourseSerializer,
@@ -58,4 +62,25 @@ class LessonViewSet(CourseViewSet, viewsets.ModelViewSet):
         if self.request.user.has_perm('users.moderator'):
             return Lesson.objects.all()
         return Lesson.objects.filter(autor=self.request.user)
+
+
+# ----------------------------------------------------- подписка -----------------------------------------------------
+class SubscriptionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        course_id = self.request.data.get('id')
+        course = get_object_or_404(Course, id=course_id)
+
+        subscription = Subscription.objects.filter(user=user, course=course)
+
+        if subscription.exists():
+            subscription.delete()
+            message = 'Подписка удалена'
+        else:
+            Subscription.objects.create(user=user, course=course)
+            message = 'Подписка добавлена'
+
+        return Response({"message": message})
 
