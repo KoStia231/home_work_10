@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from lms.apps import LmsConfig
 from lms.views import (
-    CourseViewSet, LessonViewSet
+    CourseViewSet, LessonViewSet, SubscriptionView
 )
 
 app_name = LmsConfig.name
@@ -17,4 +17,5 @@ router.register(r'courses', CourseViewSet)  # ----- курсы -----
 
 urlpatterns = [
                   path('', include(router.urls)),
+                  path('subscribe/', SubscriptionView.as_view(), name='subscribe'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
