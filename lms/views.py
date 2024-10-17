@@ -51,3 +51,11 @@ class LessonViewSet(CourseViewSet, viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
 
+    def get_queryset(self):
+        """
+        Модераторы видят все уроки, а пользователи — только свои.
+        """
+        if self.request.user.has_perm('users.moderator'):
+            return Lesson.objects.all()
+        return Lesson.objects.filter(autor=self.request.user)
+
