@@ -57,12 +57,6 @@ python manage.py loaddata db.json
 
 ---
 
-### Загрузка фикстуры с оплатой
-```python
-python manage.py loaddata pay.json  
-```
-
----
 
 ## Пользователи в базе
 
