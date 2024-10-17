@@ -5,8 +5,14 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
-from lms.models import Lesson, Course, Subscription
-from lms.permissions import IsOwner, IsModer
+from lms.models import (
+    Lesson, Course,
+    Subscription
+)
+from lms.paginators import MyPageNumberPagination
+from lms.permissions import (
+    IsOwner, IsModer
+)
 from lms.serializers import (
     LessonSerializer, CourseSerializer,
 )
@@ -21,6 +27,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = MyPageNumberPagination
 
     def get_queryset(self):
         """
@@ -54,6 +61,7 @@ class LessonViewSet(CourseViewSet, viewsets.ModelViewSet):
     """
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
+    pagination_class = MyPageNumberPagination
 
     def get_queryset(self):
         """
