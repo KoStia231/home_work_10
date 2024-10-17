@@ -76,7 +76,7 @@ python manage.py loaddata pay.json
 
 > username-> ***john.doe@example.com***
 >
->password-> ***password123***
+>password-> ***Hh14767Hh***
 
 #
 # Документация API
