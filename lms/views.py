@@ -84,11 +84,33 @@ class SubscriptionView(APIView):
         subscription = Subscription.objects.filter(user=user, course=course)
 
         if subscription.exists():
-            subscription.delete()
-            message = 'Подписка удалена'
+            message = 'Подписка уже есть'
         else:
             Subscription.objects.create(user=user, course=course)
             message = 'Подписка добавлена'
+
+        return Response({"message": message})
+
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        subscriptions = Subscription.objects.filter(user=user)
+        if subscriptions.exists():
+            subscribed_courses = [subscription.course.title for subscription in subscriptions]
+            return Response({"subscribed_courses": subscribed_courses})
+        return Response({"message": "Нет подписок"})
+
+    def delete(self, request, *args, **kwargs):
+        user = self.request.user
+        course_id = self.request.data.get('id')
+        course = get_object_or_404(Course, id=course_id)
+
+        subscription = Subscription.objects.filter(user=user, course=course)
+
+        if subscription.exists():
+            subscription.delete()
+            message = 'Подписка удалена'
+        else:
+            message = 'Подписки не обнаружено'
 
         return Response({"message": message})
 

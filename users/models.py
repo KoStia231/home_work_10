@@ -30,7 +30,8 @@ class User(AbstractUser):
         ]
 
     def __str__(self):
-        return f'{self.first_name},{self.email}, {self.phone_number}, {self.get_group_permissions()} '
+        return (f'Имя-{self.first_name}|Почта-{self.email}'
+                f'|Телефон-{self.phone_number}|Модер-{self.has_perm('moderator')}, ')
 
 
 class PayMent(models.Model):
