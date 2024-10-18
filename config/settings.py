@@ -36,6 +36,7 @@ ALLOWED_HOSTS = list(os.getenv('DJANGO_ALLOWED_HOSTS'))
 INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_extensions',
 
     'django.contrib.admin',
     'django.contrib.auth',
