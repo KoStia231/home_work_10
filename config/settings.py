@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
+
     'users',
     'lms',
 ]
@@ -152,6 +154,10 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Почта
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Пароль приложения отправки
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False).lower() == 'true'
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False).lower() == 'true'
+
+# Настройки Stripe
+STRIPE_PUBLISHABLE_KEY = os.getenv('API_STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('API_STRIPE_SECRET_KEY')
 
 # Если не нужно отправлять сообщения на почту
 EMAIL_CONSOLE = os.getenv('EMAIL_CONSOLE', False).lower() == 'true'

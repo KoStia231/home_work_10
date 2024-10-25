@@ -161,3 +161,9 @@ python manage.py loaddata db.json
 
 - **POST** `/api/payments/`
   - Создание нового платежа.
+
+- **GET** `/api/payments/{id}/stripe/`
+  - Получение статуса платежа
+  
+- **POST** `/api/payments/stripe`
+  - Создание нового платежа в платежной системе stripe.

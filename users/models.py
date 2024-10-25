@@ -63,8 +63,9 @@ class User(AbstractUser):
 
 class PayMent(models.Model):
     class MethodsPay(models.TextChoices):
-        CASH = 'C', 'наличные'
+        CASH = 'N', 'наличные'
         BANK_TRANSFER = 'B', 'перевод'
+        CARD_TRANSFER = 'C', 'картой'
 
     class StatusPay(models.TextChoices):
         PAID = 'P', 'оплачен'
@@ -76,15 +77,16 @@ class PayMent(models.Model):
     sum_payment = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='сумма оплаты')
     course = models.ManyToManyField(Course, verbose_name="Оплаченные курсы")
     lesson = models.ManyToManyField(Lesson, verbose_name="Оплаченные уроки")
-
     status_payment = models.CharField(
         max_length=1, choices=StatusPay.choices,
         default=StatusPay.NOT_PAID, verbose_name='статус оплаты'
     )
+    payment_id = models.CharField(max_length=255, verbose_name="id сессии", **NULLABLE)
 
     class Meta:
         verbose_name = 'оплата'
         verbose_name_plural = 'оплаты'
 
     def __str__(self):
-        return f'{self.user} - {self.get_status_payment_display()} - {self.data_payment}'
+        return (f'{self.user.email}|{self.get_status_payment_display()}|'
+                f'{self.data_payment}|{self.method_payment}|{self.sum_payment}')
