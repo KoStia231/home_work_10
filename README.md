@@ -75,6 +75,8 @@ python manage.py loaddata db.json
 #
 # Документация API
 
+###### также есть и http://localhost:8000/swagger/
+
 ---
 ## Аутентификация
 
