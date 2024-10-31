@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+from lms.task import send_course_update_email
+
 from lms.models import (
     Lesson, Course,
     Subscription
@@ -40,8 +42,8 @@ class CourseViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         """
         Устанавливаем права в зависимости от действия.
-        Модераторам запрещено создавать и удалять уроки.
-        Владельцы могут редактировать и удалять свои уроки.
+        Модераторам запрещено создавать и удалять курсы.
+        Владельцы могут редактировать и удалять свои курсы.
         """
         if self.action == 'create':
             self.permission_classes = (IsAuthenticated, ~IsModer)
@@ -51,9 +53,22 @@ class CourseViewSet(viewsets.ModelViewSet):
             self.permission_classes = (IsAuthenticated, IsOwner)
         return super().get_permissions()
 
+    def update(self, request, *args, **kwargs):
+        """
+        При обновлении курса отправляет письма подписчикам.
+        """
+        response = super().update(request, *args, **kwargs)
+        course = self.get_object()
+        subscriptions = Subscription.objects.filter(course=course)
+        subscriber_emails = [subscription.user.email for subscription in subscriptions]
+        for email in subscriber_emails:
+            send_course_update_email.delay(email, course.title)
+
+        return response
+
 
 # ------------------------------------------------------ уроки ------------------------------------------------------
-class LessonViewSet(CourseViewSet, viewsets.ModelViewSet):
+class LessonViewSet(viewsets.ModelViewSet):
     """
     ViewSet для уроков.
     Модератор может просматривать и редактировать все уроки.
@@ -70,6 +85,20 @@ class LessonViewSet(CourseViewSet, viewsets.ModelViewSet):
         if self.request.user.has_perm('users.moderator'):
             return Lesson.objects.all()
         return Lesson.objects.filter(autor=self.request.user)
+
+    def get_permissions(self):
+        """
+        Устанавливаем права в зависимости от действия.
+        Модераторам запрещено создавать и удалять уроки.
+        Владельцы могут редактировать и удалять свои уроки.
+        """
+        if self.action == 'create':
+            self.permission_classes = (IsAuthenticated, ~IsModer)
+        elif self.action in ['update', 'retrieve']:
+            self.permission_classes = (IsAuthenticated, IsModer | IsOwner)
+        elif self.action == 'destroy':
+            self.permission_classes = (IsAuthenticated, IsOwner)
+        return super().get_permissions()
 
 
 # ----------------------------------------------------- подписка -----------------------------------------------------
