@@ -3,6 +3,7 @@
 .DS_Store
 db.sqlite3
 .env
+.env.prod
 media/course
 media/lesson
 
