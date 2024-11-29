@@ -13,21 +13,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-      - redis
-    env_file:
-      - .env.prod
-
   celery:
     build:
       context: .
@@ -35,9 +20,8 @@ services:
     depends_on:
       - redis
       - db
-    environment:
-      CELERY_BROKER_URL: redis://redis:6379/0
-      CELERY_RESULT_BACKEND: redis://redis:6379/0
+    env_file:
+      - .env.prod
 
   celery_beat:
     build:
@@ -46,8 +30,31 @@ services:
     depends_on:
       - redis
       - db
-    environment:
-      CELERY_BROKER_URL: redis://redis:6379/0
+    env_file:
+      - .env.prod
+    volumes:
+      - .:/app
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      bash -c "
+        echo 'Applying migrations...';
+        python manage.py migrate &&
+        echo 'Running load db.json' &&
+        python manage.py loaddata db.json &&
+        echo 'Starting Django server...' &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env.prod
     volumes:
       - .:/app
 
